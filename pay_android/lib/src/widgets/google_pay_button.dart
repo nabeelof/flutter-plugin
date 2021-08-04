@@ -125,9 +125,10 @@ class RawGooglePayButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final langCode = Localizations.maybeLocaleOf(context)?.languageCode;
     final Widget rawButton = RawMaterialButton(
       fillColor:
-          style == GooglePayButtonStyle.black ? Colors.black : Colors.white,
+      style == GooglePayButtonStyle.black ? Colors.black : Colors.white,
       padding: const EdgeInsets.symmetric(horizontal: 24),
       elevation: 0,
       focusElevation: 0,
@@ -138,12 +139,12 @@ class RawGooglePayButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         side: style == GooglePayButtonStyle.flat
             ? const BorderSide(
-                color: Color(0xFFDEDEDE),
-                width: 2,
-              )
+          color: Color(0xFFDEDEDE),
+          width: 2,
+        )
             : BorderSide.none,
       ),
-      child: SvgPicture.asset(
+      child: langCode == 'ar' ? Image.asset('assets/ar/pay_with_dark.png', height: 19,) :SvgPicture.asset(
         _assetPath(context),
         package: 'pay_android',
         semanticsLabel: 'Buy with Google Pay text',
